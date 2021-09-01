@@ -43,19 +43,6 @@
     
 }
 
-
-.dashed{
-    background-color: aqua;
-    width: 200px;
-    height: 200px;
-    margin: 20px;
-    border: 5px green dashed;
-}
-
-.card-img{
-    border-radius: 50%;
-}
-
 .hide{
     display: none;
     background-color: aqua;
