@@ -150,6 +150,12 @@ addTask.addEventListener("click", (e) => {
 
 save.addEventListener("click", () => {
   alldata();
+  for (e of titles){
+    e.setAttribute("contenteditable", "false");
+  }
+  for (e of messeges){
+    e.setAttribute("contenteditable", "false");
+  }
 });
 
 function alldata() {
@@ -164,6 +170,9 @@ function alldata() {
     arrdata.push(obj1);
   }
   localStorage.setItem("infos", JSON.stringify(arrdata));
+
+ 
+ 
 }
 
 function del(i) {
