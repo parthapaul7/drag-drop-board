@@ -2,7 +2,7 @@ const card = document.getElementsByClassName("card");
 const dragcard = document.getElementsByClassName("drag");
 const save = document.getElementById("save");
 const titles = document.getElementsByTagName("h5");
-const messeges = document.getElementsByTagName("p");
+const messeges = document.getElementsByTagName("pre");
 const addTask = document.getElementById("addTask");
 
 let item = {};
@@ -43,7 +43,7 @@ function initilise() {
   arrdata.forEach((e, i) => {
     let elem = `<div class="drag" draggable="true" id="${e.catag}">
         <h5>${e.title}</h5>
-        <p> ${e.msg}</p>
+        <pre> ${e.msg}</pre>
         <button onclick="del(${i})" class="btn btn-light btn-sm"> Delete </button>
        
       </div>`;
@@ -129,7 +129,7 @@ addTask.addEventListener("click", (e) => {
     if (x[i].innerHTML == "") {
       let elem = `<div class="drag" id="red" draggable="true" >
             <h5 contenteditable="true" > Add title </h5>
-            <p contenteditable="true" > add messege</p>
+            <pre contenteditable="true" > add messege</pre>
             <button onclick="del(${i})" class="btn btn-light btn-sm">Delete</button>
            
           </div>`;

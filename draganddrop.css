@@ -57,8 +57,9 @@ footer{
     z-index: 3;
 }
 
-h5,p{
+h5{
     font-size: 1em;
+    
 }
 
 #yellow{
