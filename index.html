@@ -16,30 +16,31 @@
     <title>drag and drop</title>
   </head>
   <body>
-    <h1 style="margin: 2%">drag and drop</h1>
-    <button id="save">save</button>
-    <button id="addStory">Add story</button>
-    <button id="addTask">Add task</button>
+    <hr>
+    <div class="container headers">
+      <h1 class="heads">Not Started</h1>
+      <h1  class="heads">In Progress</h1>
+      <h1  class="heads">Done</h1>
+    </div>
+    <hr>
+    <div class="container">
+    <button class="btn btn-outline-success" id="save">save</button>
+    <button class="btn btn-outline-success" id="addTask">Add Task</button>
+    <br>*dont forget to save doing any changes<br>
+    *click on the title and messege to edit
+    </div>
+    
 <div class="main">
     <div class="card" id="notStarted"></div>
     <div class="card" id="inProgress"></div>
     <div class="card" id="done"></div>
   </div>
     <footer></footer>
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
       crossorigin="anonymous"
     ></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-    -->
     <script src="dragdrop.js"></script>
   </body>
 </html>

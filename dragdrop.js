@@ -1,5 +1,5 @@
 const card= document.getElementsByClassName('card')
-let dragcard=document.getElementsByClassName('drag');
+const dragcard=document.getElementsByClassName('drag');
 const save = document.getElementById('save')
 const titles= document.getElementsByTagName('h5')
 const messeges= document.getElementsByTagName('p')
@@ -8,13 +8,8 @@ const saveCard= document.getElementsByClassName('saveCard')
 
 let item={};
 let edit=false
-let dataX=[]
-let dataY=[]
-let dataZ=[]
-let obj={
-    title:"",
-    msg:"",
-}
+
+
 
 
 
@@ -37,63 +32,27 @@ const x= document.getElementsByClassName('x')
 const y=document.getElementsByClassName('y')
 const z= document.getElementsByClassName('z')
 
-initilise()
 
-function initilise(){
 
-    dataX=JSON.parse(localStorage.getItem('datax'))
-    if(dataX!=null){
-    dataX.forEach((e,i) => {
-        let elem=`<div class="drag" id="drag" draggable="true" >
+initilise2()
+
+function initilise2(){
+    let arrdata= JSON.parse(localStorage.getItem('infos'))
+    if(arrdata==null) arrdata=[]
+    let l=0;let m=0;let n=0;
+    arrdata.forEach((e,i)=>{
+        
+        let elem=`<div class="drag" id="drag" draggable="true" style="background-color: ${e.catag}">
         <h5>${e.title}</h5>
         <p> ${e.msg}</p>
-        <button id="del">Delete</button>
-        <button class="saveCard">save</button>
+        <button id="del" class="btn btn-light btn-sm"> Delete </button>
+       
       </div>`;
 
-    //    console.log(box);
-      
-        x[i].innerHTML=elem
-        
-    });}
-
-    else dataX=[]
-
-    dataY=JSON.parse(localStorage.getItem('datay'))
-    if(dataY!=null){
-    dataY.forEach((e,i) => {
-        let elem=`<div class="drag" id="drag" draggable="true" style="background-color: yellow" >
-        <h5>${e.title}</h5>
-        <p> ${e.msg}</p>
-        <button id="del">Delete</button>
-        <button class="saveCard">save</button>
-      </div>`;
-
-    //    console.log(box);
-      
-        y[i].innerHTML=elem
-        
-    });}
-
-    else dataY=[]
-
-    dataZ=JSON.parse(localStorage.getItem('dataz'))
-    if(dataZ!=null){
-    dataZ.forEach((e,i) => {
-        let elem=`<div class="drag" id="drag" draggable="true" style="background-color: green">
-        <h5>${e.title}</h5>
-        <p> ${e.msg}</p>
-        <button id="del"> Delete </button>
-        <button class="saveCard">save</button>
-      </div>`;
-
-       console.log(e.title);
-      
-        z[i].innerHTML=elem
-        
-    });}
-
-    else dataZ=[]
+        if(e.catag == "red")    {x[l].innerHTML=elem; l++}
+        if(e.catag =="yellow" ) {y[m].innerHTML=elem;m++}
+        if(e.catag == "green")  {z[n].innerHTML= elem;n++}
+    })
 }
 
 
@@ -216,11 +175,11 @@ addTask.addEventListener('click',(e)=>{
 
     for (box of x){
         if(box.innerHTML =="" ) {
-            let elem=`<div class="drag" id="drag" draggable="true" >
-            <h5> add title and </h5>
-            <p> msg</p>
-            <button id="del">Delete</button>
-            <button class="saveCard">save</button>
+            let elem=`<div class="drag" id="drag" draggable="true" style="background-color: red" >
+            <h5> Add title </h5>
+            <p> add messege</p>
+            <button id="del" class="btn btn-light btn-sm">Delete</button>
+           
           </div>`;
 
            console.log(box);
@@ -242,37 +201,27 @@ addTask.addEventListener('click',(e)=>{
 
 // push card data to arrey
 
-savedatas()
-function savedatas(){
-for (box of saveCard){
-box.addEventListener('click',(e)=>{
-    console.log('savecard called');
-    
-    let omg=e.target.parentElement.childNodes
-    
-    if(omg[1].innerText=="") return
-    
-    let val= e.target.parentElement.parentElement.className;
-    console.log(e.target.parentElement.childNodes[1].innerText);
-    
-    obj.title=e.target.parentElement.childNodes[1].innerText
-    obj.msg=e.target.parentElement.childNodes[3].innerText
-    
-    // this local storga remove has no work
 
-   if(val == 'x') { localStorage.removeItem('datax'); dataX.push(obj) ; localStorage.setItem('datax', JSON.stringify(dataX))}
-   if(val == 'y') {  localStorage.removeItem('datay');dataY.push(obj) ; localStorage.setItem('datay', JSON.stringify(dataY))}
-   if(val == 'z') {  localStorage.removeItem('dataz');dataZ.push(obj) ; localStorage.setItem('dataz', JSON.stringify(dataZ))}
 
-   for (boxes of titles){
-    boxes.setAttribute("contenteditable", "false");
 
-}
-for (boxes of messeges){
-    boxes.setAttribute("contenteditable", "false");
-}
-    
+save.addEventListener('click',()=>{ 
+alldata2()
+
 })
 
-}
+function alldata2(){
+    let arrdata=[]
+    for(let i=0;i<titles.length;i++){
+
+        let obj1={
+            title:titles[i].innerText,
+            msg:messeges[i].innerText,
+            catag:titles[i].parentElement.style.backgroundColor
+        }
+        
+        arrdata.push(obj1);
+        
+
+    }
+    localStorage.setItem('infos',JSON.stringify(arrdata))
 }
