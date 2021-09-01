@@ -6,12 +6,13 @@ const messeges= document.getElementsByTagName('p')
 const addTask= document.getElementById('addTask')
 const saveCard= document.getElementsByClassName('saveCard')
 
+
 let item={};
 let edit=false
 
 
-
-
+refrsh()
+function refrsh(){
 
 for(let i=0;i<8;i++){
     
@@ -26,7 +27,7 @@ for(let i=0;i<8;i++){
     card[2].append(z)
     console.log("done",card[1]);
 
-}
+}}
 
 const x= document.getElementsByClassName('x')
 const y=document.getElementsByClassName('y')
@@ -37,15 +38,21 @@ const z= document.getElementsByClassName('z')
 initilise2()
 
 function initilise2(){
+    for(let i=0;i<x.length;i++)
+    {
+        x[i].innerHTML=''
+        y[i].innerHTML=''
+        z[i].innerHTML=''
+    }
     let arrdata= JSON.parse(localStorage.getItem('infos'))
     if(arrdata==null) arrdata=[]
     let l=0;let m=0;let n=0;
     arrdata.forEach((e,i)=>{
         
-        let elem=`<div class="drag" id="drag" draggable="true" style="background-color: ${e.catag}">
+        let elem=`<div class="drag" draggable="true" id="${e.catag}">
         <h5>${e.title}</h5>
         <p> ${e.msg}</p>
-        <button id="del" class="btn btn-light btn-sm"> Delete </button>
+        <button onclick="del(${i})" class="btn btn-light btn-sm"> Delete </button>
        
       </div>`;
 
@@ -99,9 +106,9 @@ for (box of card)
         
         console.log('drop and append dragdrop element',e.target.className);
 
-        if(e.target.className == 'x') {item.style.backgroundColor ='red'; e.target.append(item) }
-        if(e.target.className == 'y') {item.style.backgroundColor ='yellow'; e.target.append(item) }
-        if(e.target.className == 'z') {item.style.backgroundColor ='green'; e.target.append(item) }
+        if(e.target.className == 'x') {item.id ='red'; e.target.append(item) }
+        if(e.target.className == 'y') {item.id ='yellow'; e.target.append(item) }
+        if(e.target.className == 'z') {item.id ='green'; e.target.append(item) }
         
            
     })
@@ -146,7 +153,7 @@ for (box of titles){
         e.target.setAttribute("contenteditable", 'true');
         console.log(e.target);
         
-        obj.title= e.target.innerText
+        alldata2()
         
     })
 }
@@ -159,7 +166,7 @@ for (box of messeges){
         console.log(e.target);
     
 
-        obj.msg= e.target.innerText
+        alldata2()
         
     })
 }
@@ -173,23 +180,22 @@ console.log(x[3].innerHTML == "");
 
 addTask.addEventListener('click',(e)=>{
 
-    for (box of x){
-        if(box.innerHTML =="" ) {
-            let elem=`<div class="drag" id="drag" draggable="true" style="background-color: red" >
+    for(let i=0;i<x.length;i++){
+        if(x[i].innerHTML =="" ) {
+            let elem=`<div class="drag" id="red" draggable="true" >
             <h5> Add title </h5>
             <p> add messege</p>
-            <button id="del" class="btn btn-light btn-sm">Delete</button>
+            <button onclick="del(${i})" class="btn btn-light btn-sm">Delete</button>
            
           </div>`;
 
-           console.log(box);
+           console.log(x[i]);
           
-            box.innerHTML=elem
-            console.log(box);
+            x[i].innerHTML=elem
+            
             dragdrop();
             console.log(titles);
             edits()
-            savedatas()
             break;
         }
         
@@ -216,7 +222,7 @@ function alldata2(){
         let obj1={
             title:titles[i].innerText,
             msg:messeges[i].innerText,
-            catag:titles[i].parentElement.style.backgroundColor
+            catag:titles[i].parentElement.id
         }
         
         arrdata.push(obj1);
@@ -225,3 +231,18 @@ function alldata2(){
     }
     localStorage.setItem('infos',JSON.stringify(arrdata))
 }
+
+
+function del(i){
+    
+    
+    let arrdata= JSON.parse(localStorage.getItem('infos'))
+
+    arrdata.splice(i,1)
+    console.log(i,arrdata);
+    localStorage.clear()
+    localStorage.setItem('infos',JSON.stringify(arrdata))
+    initilise2()
+
+}
+

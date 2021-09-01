@@ -29,7 +29,6 @@
 .drag{
     background-position: center;
     background-size: 100%;
-    background-color: red;
     border: black solid 2px;
     z-index: 2;
     max-width: 100%;
@@ -73,4 +72,14 @@ footer{
 
 h5,p{
     font-size: 1em;
+}
+
+#yellow{
+    background-color: rgb(241, 241, 77);
+}
+#red{
+    background-color: rgb(236, 77, 77);
+}
+#green{
+    background-color: rgb(98, 252, 98);
 }
