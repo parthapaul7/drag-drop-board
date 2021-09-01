@@ -110,7 +110,6 @@ function edits() {
     box.addEventListener("click", (e) => {
       e.target.setAttribute("contenteditable", "true");
 
-      alldata();
     });
   }
 
@@ -118,28 +117,27 @@ function edits() {
     box.addEventListener("click", (e) => {
       e.target.setAttribute("contenteditable", "true");
 
-      alldata();
     });
   }
 }
 
 // add task
-console.log(x[3].innerHTML == "");
+
 
 addTask.addEventListener("click", (e) => {
   for (let i = 0; i < x.length; i++) {
     if (x[i].innerHTML == "") {
       let elem = `<div class="drag" id="red" draggable="true" >
-            <h5> Add title </h5>
-            <p> add messege</p>
+            <h5 contenteditable="true" > Add title </h5>
+            <p contenteditable="true" > add messege</p>
             <button onclick="del(${i})" class="btn btn-light btn-sm">Delete</button>
            
           </div>`;
 
       x[i].innerHTML = elem;
-
-      dragdrop();
+     
       edits();
+      dragdrop();
       break;
     } else {
     }
@@ -176,11 +174,17 @@ function alldata() {
 }
 
 function del(i) {
-  let arrdata = JSON.parse(localStorage.getItem("infos"));
+  alldata();
+  setTimeout(() => {
+    let arrdata = JSON.parse(localStorage.getItem("infos"));
 
-  arrdata.splice(i, 1);
-
-  localStorage.clear();
-  localStorage.setItem("infos", JSON.stringify(arrdata));
-  initilise();
+    arrdata.splice(i, 1);
+  
+    localStorage.clear();
+    localStorage.setItem("infos", JSON.stringify(arrdata));
+    
+    initilise();
+    
+  }, 10);
+ 
 }
