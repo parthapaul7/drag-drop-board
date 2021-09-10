@@ -12,33 +12,32 @@
       crossorigin="anonymous"
     />
     <link href="draganddrop.css" rel="stylesheet" />
+    <link rel="stylesheet" href="clock/index.css" />
+
     <title>drag and drop</title>
   </head>
   <body>
-    <div class="container">
-      <br>*you can drag and drop your cards<br>
-      *dont forget to save after doing any changes<br>
-      *click on the title and messege to edit<br>
-     
+    <div class="clockCal">
+      <div id="clockContainer">
+        <div id="hour"></div>
+        <div id="minute"></div>
+        <div id="second"></div>
       </div>
-    <hr>
-    <div class="container headers">
-      <h1 class="heads">Not Started</h1>
-      <h1  class="heads">In Progress</h1>
-      <h1  class="heads">Done</h1>
+      <iframe src="https://calendar.google.com/calendar/embed?height=250&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FKolkata&src=cHBhcnRoYXBhdWwxMUBnbWFpbC5jb20&src=bm9qOWhyZ3ZsdDFncjNpZHJjMWkxbDBrbDBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=ZW4uaW5kaWFuI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=ZmFtaWx5MDk1OTg5NjI1NDA1NTI4MjQ2NzRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23AD1457&color=%237986CB&color=%23009688&color=%234285F4&showTabs=0&showCalendars=0&showPrint=0&showTitle=0&showDate=0&showTz=0&mode=MONTH&showNav=0&title=dragdrop%20cal" style="border-width:0" width="400" height="250" frameborder="0" scrolling="no"></iframe>
     </div>
-    <hr>
     <div class="container">
       <button class="btn btn-outline-success" id="save">save</button>
       <button class="btn btn-outline-success" id="addTask">Add Task</button>
     </div>
-    
-<div class="main">
-    <div class="card" ></div>
-    <div class="card" ></div>
-    <div class="card" ></div>
-  </div>
+
+    <div class="main">
+      <div class="card"></div>
+      <div class="card"></div>
+      <div class="card"></div>
+    </div>
     <footer></footer>
+
+    <script src="clock/index.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"

@@ -2,6 +2,12 @@
     display: flex;
 
 }
+.clockCal{
+display: flex;
+justify-content: space-evenly;
+}
+
+
 .headers{
     display: flex;
     margin:  auto;
